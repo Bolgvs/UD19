@@ -1,6 +1,5 @@
 package ex2;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,35 +7,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class ListaPeliculasWindow {
 
+	private ListaPeliculas listaPeliculas = new ListaPeliculas();
 	private JFrame frmPeliculas;
 	private JTextField textField;
-
-	/*
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListaPeliculasWindow window = new ListaPeliculasWindow();
-					window.frmPeliculas.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	
 
 	/*
 	 * Create the application.
 	 */
 	public ListaPeliculasWindow() {
 		initialize();
+		frmPeliculas.setVisible(true);
 	}
 
 	/**
@@ -50,7 +38,7 @@ public class ListaPeliculasWindow {
 		frmPeliculas.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Escribe el t\u00EDtulo de una pel\u00EDcula");
-		lblNewLabel.setBounds(31, 74, 153, 33);
+		lblNewLabel.setBounds(31, 74, 228, 23);
 		frmPeliculas.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Pel\u00EDculas");
@@ -62,14 +50,16 @@ public class ListaPeliculasWindow {
 		frmPeliculas.getContentPane().add(textField);
 		textField.setColumns(10);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(289, 117, 96, 22);
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(261, 117, 135, 22);
 		
 		JButton btnNewButton = new JButton("A\u00F1adir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!textField.getText().isEmpty()) {
-					
+					listaPeliculas.anadePelicula(textField.getText());
+					comboBox.setModel(new DefaultComboBoxModel<String>(listaPeliculas.getPeliculas().toArray(new String[0])));
+					comboBox.setSelectedItem(textField.getText());
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes poner una película en el recuadro");
 				}

@@ -6,7 +6,9 @@ public class ListaPeliculas {
 	
 	ArrayList<String> peliculas = new ArrayList<String>();
 	
-	void anadePelicula(String peli) {
+	public ListaPeliculas() {}
+	
+	public void anadePelicula(String peli) {
 		peliculas.add(peli);
 	}
 

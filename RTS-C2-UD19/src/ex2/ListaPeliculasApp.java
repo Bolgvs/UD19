@@ -3,7 +3,7 @@ package ex2;
 public class ListaPeliculasApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ListaPeliculasWindow listaPeliculasWindow = new ListaPeliculasWindow();
 
 	}
 

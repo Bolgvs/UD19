@@ -1,14 +1,11 @@
 package ex1;
 
-import java.awt.EventQueue;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;
-import java.awt.Window.Type;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -18,7 +15,6 @@ public class SaludadorWindow {
 
 	private Saludador salutatous = new Saludador();
 	private JFrame Saludador;
-	private JTextField textField;
 
 
 
