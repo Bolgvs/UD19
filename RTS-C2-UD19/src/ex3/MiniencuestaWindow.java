@@ -21,28 +21,13 @@ import javax.swing.JButton;
 
 public class MiniencuestaWindow {
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MiniencuestaWindow window = new MiniencuestaWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
 	public MiniencuestaWindow() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -57,15 +42,15 @@ public class MiniencuestaWindow {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Elije un sistema operativo:");
-		lblNewLabel.setBounds(22, 20, 161, 14);
+		lblNewLabel.setBounds(22, -19, 296, 92);
 		frame.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Elije tu especialidad:");
-		lblNewLabel_1.setBounds(244, 20, 130, 14);
+		lblNewLabel_1.setBounds(244, 20, 246, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Horas dedicadas en el ordenador:");
-		lblNewLabel_2.setBounds(22, 140, 220, 14);
+		lblNewLabel_2.setBounds(22, 147, 280, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 
 		JRadioButton rdbtnWindows = new JRadioButton("Windows");
@@ -82,15 +67,15 @@ public class MiniencuestaWindow {
 		frame.getContentPane().add(rdbtnMac);
 
 		JCheckBox chckbxProgramacion = new JCheckBox("Programaci\u00F3n");
-		chckbxProgramacion.setBounds(244, 40, 97, 23);
+		chckbxProgramacion.setBounds(244, 40, 198, 23);
 		frame.getContentPane().add(chckbxProgramacion);
 
 		JCheckBox chckbxDiseno = new JCheckBox("Dise\u00F1o Gr\u00E1fico");
-		chckbxDiseno.setBounds(244, 67, 97, 23);
+		chckbxDiseno.setBounds(244, 67, 183, 23);
 		frame.getContentPane().add(chckbxDiseno);
 
 		JCheckBox chckbxAdmin = new JCheckBox("Administraci\u00F3n");
-		chckbxAdmin.setBounds(244, 93, 97, 23);
+		chckbxAdmin.setBounds(244, 93, 183, 23);
 		frame.getContentPane().add(chckbxAdmin);
 
 		ButtonGroup grupo = new ButtonGroup();
@@ -108,13 +93,14 @@ public class MiniencuestaWindow {
 		frame.getContentPane().add(slider);
 
 		JButton btnMostrar = new JButton("Mostrar datos");
-		btnMostrar.setBounds(284, 170, 117, 23);
+		btnMostrar.setBounds(269, 191, 158, 23);
 		frame.getContentPane().add(btnMostrar);
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String sist_op;
-				String especialidad = null;
+				StringBuilder especialidad = new StringBuilder();;
 				int horas;
+				
 				if (rdbtnWindows.isSelected()) {
 					sist_op = "Windows";
 				} else if (rdbtnLinux.isSelected()) {
@@ -122,20 +108,47 @@ public class MiniencuestaWindow {
 				} else {
 					sist_op = "Mac";
 				}
+				
 				if (chckbxProgramacion.isSelected()) {
-					especialidad = "Programación";
+					if (especialidad.length() > 0)
+					{
+						especialidad.append(", ");
+					}
+					
+					especialidad.append("Programación");
 				}
+				
 				if (chckbxAdmin.isSelected()) {
-					especialidad = "Administración";
+					if (especialidad.length() > 0)
+					{
+						especialidad.append(", ");
+					}
+					
+					especialidad.append("Administración");
 				} 
+				
 				if (chckbxDiseno.isSelected()) {
-					especialidad = "Diseño";
+					if (especialidad.length() > 0)
+					{
+						especialidad.append(", ");
+					}
+					
+					especialidad.append("Diseño");
 				}
 				
 				horas = slider.getValue();
 				
-				JOptionPane.showMessageDialog(null, "El sistema operativo es: " + sist_op 
-						+ "\nLa especialidad es: " + especialidad + "\nHoras dedicadas: " + horas);
+				if (especialidad.length() > 0)
+				{
+					JOptionPane.showMessageDialog(null, "El sistema operativo es: " + sist_op 
+							+ "\nLa especialidad es: " + especialidad.toString() + "\nHoras dedicadas: " + horas);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "El sistema operativo es: " + sist_op 
+							+ "\nNo se ha especificado especialidad" + "\nHoras dedicadas: " + horas);
+				}
+				
 			}
 				
 		});
