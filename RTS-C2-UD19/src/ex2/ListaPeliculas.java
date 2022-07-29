@@ -1,5 +1,16 @@
 package ex2;
 
-public class ListaPeliculas {
+import java.util.ArrayList;
 
+public class ListaPeliculas {
+	
+	ArrayList<String> peliculas = new ArrayList<String>();
+	
+	void anadePelicula(String peli) {
+		peliculas.add(peli);
+	}
+
+	public ArrayList<String> getPeliculas() {
+		return peliculas;
+	}
 }
