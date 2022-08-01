@@ -15,7 +15,7 @@ public class MiniCalculadora {
 	{
 		switch (tipo) {
 			case Division:
-				resultado.setText(Integer.toString(operando1 / operando2));
+				resultado.setText(Double.toString((double)operando1 / operando2));
 				break;
 			case Multiplicacion:
 				resultado.setText(Integer.toString(operando1 * operando2));

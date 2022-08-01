@@ -9,6 +9,8 @@ import ex4.MiniCalculadora.Operacion;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -19,33 +21,20 @@ public class MiniCalculadoraWindow {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MiniCalculadoraWindow window = new MiniCalculadoraWindow();
-					window.frmMiniYoda.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public MiniCalculadoraWindow() {
 		initialize();
+		frmMiniYoda.setVisible(true);
 	}
 
 	boolean verificaInput(JTextField operando1, JTextField operando2) {
 		boolean result = false;
 		
-		if (operando1.getText().length() > 0 && operando2.getText().length() > 0)
+		if (operando1.getText().matches("-?[0-9]+") && operando2.getText().matches("-?[0-9]+"))
 		{
 			result = true;
 		}
@@ -63,15 +52,15 @@ public class MiniCalculadoraWindow {
 		frmMiniYoda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMiniYoda.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(231, 48, 86, 20);
-		frmMiniYoda.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		textField_1 = new JTextField();
-		textField_1.setBounds(31, 48, 86, 20);
+		textField_1.setBounds(231, 48, 86, 20);
 		frmMiniYoda.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBounds(31, 48, 86, 20);
+		frmMiniYoda.getContentPane().add(textField);
+		textField.setColumns(10);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(31, 203, 86, 20);
@@ -89,6 +78,7 @@ public class MiniCalculadoraWindow {
 				else
 				{
 					//error
+					JOptionPane.showMessageDialog(null, "Valores introducidos no son válidos");
 				}
 			}
 		});
@@ -100,6 +90,7 @@ public class MiniCalculadoraWindow {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// About
+				JOptionPane.showMessageDialog(null, "CALCULADORA");
 			}
 		});
 		frmMiniYoda.getContentPane().add(btnNewButton_1);
@@ -116,6 +107,7 @@ public class MiniCalculadoraWindow {
 				else
 				{
 					//error
+					JOptionPane.showMessageDialog(null, "Valores introducidos no son válidos");
 				}
 			}
 		});
@@ -132,6 +124,7 @@ public class MiniCalculadoraWindow {
 				else
 				{
 					//error
+					JOptionPane.showMessageDialog(null, "Valores introducidos no son válidos");
 				}
 			}
 		});
@@ -149,6 +142,7 @@ public class MiniCalculadoraWindow {
 				else
 				{
 					//error
+					JOptionPane.showMessageDialog(null, "Valores introducidos no son válidos");
 				}	
 			}
 		});
@@ -168,7 +162,7 @@ public class MiniCalculadoraWindow {
 		frmMiniYoda.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Posibles Operaciones");
-		lblNewLabel_3.setBounds(31, 101, 110, 14);
+		lblNewLabel_3.setBounds(31, 101, 155, 14);
 		frmMiniYoda.getContentPane().add(lblNewLabel_3);
 	}
 }
