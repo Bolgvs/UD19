@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import ex4.MiniCalculadora.Operacion;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -39,6 +42,17 @@ public class MiniCalculadoraWindow {
 		initialize();
 	}
 
+	boolean verificaInput(JTextField operando1, JTextField operando2) {
+		boolean result = false;
+		
+		if (operando1.getText().length() > 0 && operando2.getText().length() > 0)
+		{
+			result = true;
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -67,28 +81,77 @@ public class MiniCalculadoraWindow {
 		JButton btnNewButton = new JButton("+");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (verificaInput(textField, textField_1))
+				{
+					MiniCalculadora.CalculaOperacion(Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()),
+							Operacion.Suma, textField_2);
+				}
+				else
+				{
+					//error
+				}
 			}
 		});
-		btnNewButton.setBounds(42, 126, 40, 25);
+		btnNewButton.setBounds(31, 126, 51, 25);
 		frmMiniYoda.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("About");
 		btnNewButton_1.setBounds(333, 223, 92, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// About
+			}
+		});
 		frmMiniYoda.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("*");
 		btnNewButton_2.setBounds(120, 126, 40, 25);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (verificaInput(textField, textField_1))
+				{
+					MiniCalculadora.CalculaOperacion(Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()),
+							Operacion.Multiplicacion, textField_2);
+				}
+				else
+				{
+					//error
+				}
+			}
+		});
 		frmMiniYoda.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("-");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (verificaInput(textField, textField_1))
+				{
+					MiniCalculadora.CalculaOperacion(Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()),
+							Operacion.Resta, textField_2);
+				}
+				else
+				{
+					//error
+				}
 			}
 		});
 		btnNewButton_3.setBounds(81, 126, 40, 25);
 		frmMiniYoda.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("/");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (verificaInput(textField, textField_1))
+				{
+					MiniCalculadora.CalculaOperacion(Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()),
+							Operacion.Division, textField_2);
+				}
+				else
+				{
+					//error
+				}	
+			}
+		});
 		btnNewButton_4.setBounds(159, 126, 40, 25);
 		frmMiniYoda.getContentPane().add(btnNewButton_4);
 		
